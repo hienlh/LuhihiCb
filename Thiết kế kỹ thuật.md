@@ -13,7 +13,7 @@ Nói về tính đầy đủ thì thiết kế kỹ thuật cung cấp đầy đ
 
 Phương pháp agile được giới thiệu trong chương 4 bắt đầu code mà không cần thiết kế kỹ thuật đầy đủ và có lẽ là không cần bất kỳ thiết kế kỹ thuật nào cả. Điều này có nghĩa là thiết kế kỹ thuật được hình thành trong đầu của các lập trình viên và thương được ghi lại trong code. Tuy nhiên, thiết kế kỹ thuật sẽ tiếp tục còn cần thiết đồi với các nhà phát triển agile, chúng ta sẽ thảo luận nó trong phần 19.8.
 
-19.1 Liên hệ giữa use case, kiến trúc và thiết kế kỹ thuật
+## 19.1 Liên hệ giữa use case, kiến trúc và thiết kế kỹ thuật
 
 Mối liên hệ giữa use case, kiến trúc và thiết kế kỹ thuật có thể được hiểu tương tự như quy trình thiết kế một cây cầu. Use case sẽ là một phần của những yêu cầu đối với cây cầu (xem ví dụ về use case ở hình 19.2). Dựa trên những yêu cầu, kỹ sư sau đó sẽ chọn kiến trúc bằng cách lùi lại và nhìn toàn cảnh. Thông thường sẽ có nhiều kiến trúc. Trong trường hợp này kiến trúc treo đã được lựa chọn. Quá trình này được mình hoạ trong hình 19.2.
 
@@ -21,7 +21,7 @@ Một khi kiến trúc đã được chọn, các kỹ sư có thể phát tri�
 
 Trong phần mềm cũng tương tự như ví dụ về cây cầu, mỗi giai đoạn tương ứng với tích luỹ thêm các lớp được thể hiện trong hình 19.2 và 19.3. Trong bước 1 use case được chỉ định là 1 phần của yêu cầu. Trong bước 2 các usecase này cùng với các nguồn khác được sử dụng để xác định các lớp domain. Ở bước 3, chúng ta phát triển kiến trúc phần mềm như mô tả ở chương 18. Bước 4, chúng ta phát triển thiết kế kỹ thuật bằng các xác định các lớp thiết kế. Chúng ta bắt đầu với lớp Domain (ví dụ: Phương tiện, đường) và thêm các lớp thiết kế bổ sung (ví dụ: thành cầu, cáp) để hoàn thành thiết kế. Sau đó chúng ta kiểm tra kiến trúc và thiết kế kỹ thuật hỗ trợ các use case yêu cầu. Tương tự cầu, chúng ta kiểm tra xem liệu xe ô tô có thể sủe dụng thiết kế cầu để đi từ Green Hill tới Jones Hollow như đã xác định từ trước. Đối với thiết kế phần mềm, chúng ta sẽ kiểm tra xem rằng những lớp và phương thức đã được xác định với bản thiết kế kỹ thuật có khả năng thực thi các use case yêu cầu hay không.
 
-19.2 Bản đồ đường đặc trương cho quá trình thiết kế kỹ thuật
+## 19.2 Bản đồ đường đặc trương cho quá trình thiết kế kỹ thuật
 
 Thiết kế kỹ thuật bắt đầu với kết quả của giai đoạn chọn kiến trúc và kết thúc bằng một kế hoạch chi tiết hoàn chỉnh cho giai đoạn lập trình. Hình 19.4 trình bày một quy trình điển hình về các bước để thực hiện thiết kê kỹ thuật. Sự thật là không có một cách tiêu chuẩn phổ biên nào về quá trình này và trong thực tế chúng ta thường quay lại thiết kế khi đối mặt với sự thật của việc biến một thiết kế thành hiện thực. Quy trình agile được giới thiệu ở phần 19.8 và chương 4 là ví dụ rõ nhất cho điều này.
 
@@ -31,7 +31,7 @@ Bước 3 của hình 19.4 bao gồm kiểm tra xem chúng tôi có 1 bản thi�
 
 Trong phát triển dựa trên kiểm thử,  thường được kết hợp với phát triển agile, bước 6 và 7 được thực hiện trước một vài (có thể là tất cả) các bước từ 1 đến 5, và việc triển khai chúng được bao gồm trong quy trình. Nói cách khác, những bộ test được phát triển sớm nhất có thể, sau đó thiết kế, và code tạo ra để đáp ứng những bộ kiểm thử đó. Bất kể phương pháp nào được sử dụng, tạo ra bộ kiểm thử siwms sẽ thường là ý tưởng tuyệt vời.
 
-19.3 Quy tắc thiết kế hướng đối tượng
+## 19.3 Quy tắc thiết kế hướng đối tượng
 
 Martin đã xác định 5 nguyên tắc để thiết kế lớp cho phần mềm hướng đối tượng đi đôi với phát triển nhanh. Nó được tóm tắt trong hình 19.5.
 
@@ -51,7 +51,7 @@ Mô đun Copy phụ thuộc vào các cấp độ thấp hơn - đọc bàn phí
 
 Nguyên tắc tách nhỏ interface cho phép chúng ta thu thập các interface liên quan vào các interface riêng thay vì trộn các phương thức không liên quan. Điều này được rút ra từ các bài học về thiết kế thành phần nơi mà chúng ta đã học cách để đóng gói các bộ phương thức trong các bộ nhỏ có thể quản lý được, bằng cách giữa các interface nhỏ bạn có thể tăng sự gắn kết giữa chúng.
 
-19.4 Thiết kế dựa vào interface
+## 19.4 Thiết kế dựa vào interface
 
 Ý tưởng của việc thiết ké dựa vào interface giống như việc bạn sử dụng hợp đồng. Các thành phần của chương trình sẽ cung cấp chức năng (Ví dụ như lớp khách hàng) đảm bảo để có các chức năng của interface với tên riêng, loại tham số, and loại trả về (ví dụ void bill(void) và boolean printAccount(String accoutType)). Các thành phần của một chương trình có sử dụng chức năng này có thể được thiết kế mà không cần biết các chức năng này hoạt động như thế nào, nhưng gì họ cần biết là sử dụng nó như thế nào. Chúng ta đã thảo luận khái niệm này trong bối cảnh của mẫu thiết kế nơi mà các mẫu này có khách hàng. Mẫu thiết kế Facade cũng là một cách cung cấp interface rõ ràng tới một gói lớp.
 
@@ -61,7 +61,7 @@ Một ví dụ nữa là giả sử chúng ta đang viết code về khách hàn
 
 Riêng với Java, một từ khoá riêng của Java cung cấp đó là "Interfaces" dành cho vai trò interface được mô tả ở trên. Cái này chỉ cần một vài ký hiệu nhất định (tên, kiểu trả về, kiểu tham số). Không giống như kế thừa trong Java, một lớp có thể triển khai nhiều interface. Các ký hiệu UML cho một interface là hình chữ nhật nét đứt và một hình tam giác nét đứt thay thế cho các hình nét liền.
 
-19.5 Xác định lớp, chức năng và thuật toán.
+## 19.5 Xác định lớp, chức năng và thuật toán.
 
 Mục tiêu của việc hoàn thành thiết kế kỹ thuật là cung cấp một bản kế hoạch chi tiết để một phần mềm có thể được xây dựng lên từ đây. Một bản kế hoạch nhà tốt sẽ làm cho những người xây dựng ít nghi ngờ nhất về những ý định của nhà thiết kế, và nó cũng đúng với thiết kế kỹ thuật cho phần mềm. Hình 19.9 mô tả các bước điển hình trong việc áp dụng thiết kế kỹ thuật cho mỗi lớp, và tiếp theo sẽ giải thích chi tiết cho từng bước.
 
@@ -71,7 +71,7 @@ Xác định các lớp là thông qua Ngôn ngữ định nghĩa giao diện CO
 
 Trong một vài tổ chức, các thiết kế kỹ thuật được làm bằng cách cung cấp code thay vì UML. Điều này đôi khi đúng nếu cần đầy nhanh tốc độ. Ưu điểm của cách này là không cần chuyển lại các thông số kỹ thuật thành code. Còn nhược điểm là code thì khó đọc hơn văn xuôi thông thường. Sau đó các hàm trong mẫu code đó sẽ được thêm nôi dung trong quá trình triển khau bởi các lập trình viên. 
 
-19.5.1 Điều kiện cần, điều kiện đủ, bất biến
+### 19.5.1 Điều kiện cần, điều kiện đủ, bất biến
 
 Một cách hiệu quả để xác định các chức năng là bằng các điều kiện cần và điều kiện đủ. Điều kiện cần xác định các mối quan hệ giữa các biến và hằng được giả sử là tồn tại trước khi hàm thực hiện, điều kiện cần để xác định các mối quan hệ bắt buộc sau khi thực hiện hàm. Ví dụ, hàm withdraw(int withdrawalAmountP) của lớp Account có thể được xác định như trong hình 19.10. Một ví dụ khác về điều kiện cần là một tham số age mà phương thức giả định là tuổi phải lớn hơn 0. Những ảnh hưởng tới một phương thức là điều kiện đủ của nó. Chúng là lý do chính của phương thức, và cũng phải được xác định. Theo kinh nghiệm của các tác giả, các kỹ sư phần mềm yêu cầu đào tạo khá nhiều về khả năng xác định chính xác các điều kiện cần và điều kiện đủ, như trong Hình 19.10.
 
@@ -81,7 +81,7 @@ Bất biến: Tổng các giá trị của chất lượng.
 
 Nói cách khác, khi một giá trị của một chất lượng bị thay đổi bởi adjustQuality(), các giá trị còn lại sẽ thay đổi sao cho tổng không thay đổi.
 
-19.5.2 Biểu diễn thuật toán bằng sơ đồ hoạt động và mã giả
+### 19.5.2 Biểu diễn thuật toán bằng sơ đồ hoạt động và mã giả
 
 Nó rất hữu ích để xác định các thuật toán không cần thiết tại thời điểm thiết kế kỹ thuật. Ưu điểm của việc này là các kỹ sư có thể kiểm tra các thuật toán một cách riêng biệt mà không cần lập trình phức tạp, do đó kiểm tra được nhiều thiếu sót quan trọng trước khi chúng thành các lỗi lập trình. Đối với các hàm càng quan trọng thì phương pháp này càng quan trọng. Các phương pháp với sự phân chia phức tạp là các ứng cử viên cho sơ đồ hoạt động ("sơ đồ nâng cao"). Sơ đồ hoạt động được mô tả trong Chương 16.
 
@@ -91,7 +91,7 @@ Một số tổ chức sử dụng mã giả đã làm chú thích trong code. S
 
 Mỗi sơ đồ hoạt động và mã giả đều có những ưu điểm được liệt kê trong Hình 19.13 và 19,14. Việc có sử dụng chúng hay không phụ thuộc vào các yếu tố cụ thể trong từng ứng dụng. Một số nhà phát triển thường né tránh việc dùng sơ đồ hoạt động kiểu cũ, nhưng sơ đồ hoạt động và mã giả có thể gây rắc rối cho các phần được chọn của các ứng dụng, nơi chúng giúp tạo ra các sản phẩm chất lượng tốt hơn.
 
-19.6 Sử dụng lại các thành phần
+## 19.6 Sử dụng lại các thành phần
 
 Hầu hết các ngành kỹ thuật (điện, cơ khí, v.v.) đều dựa vào việc sử dụng lại các thành phần có thể mua lẻ được. Ví dụ, nhà thiết kế cầu cố gắng sử dụng dầm chữ I tiêu chuẩn. Việc áp dụng rộng rãi các mô hình đối tượng và các thành phần khác đã giúp thúc đẩy việc tái sử dụng phần mềm. Do số lượng lớn các phương thức được đóng gói với các lớp, chức năng mà chúng ta cần thường tương đối dể dàng để biết nó ở đâu. Việc sử dụng các thư viện Microsoft, Visual Basic controls, Microsoft Assemblies, Java Beans và Interfaces trong Java là các ví dụ về tái sử dụng mã.
 
@@ -109,11 +109,11 @@ Tìm thấy một thành phần có thể sử dụng được trong ứng dụn
 
 Để quyết định việc có sử dụng lại các thành phần có kích thước lớn hay không, thì nên làm ra một bảng so sánh chi phí, tương tự như trong Chương 8 nơi hiển thị ví dụ tự làm so với mua.
 
-19.7 Sơ đồ tuần tự và sơ đồ luồng dữ liệu trong thiết kế kỹ thuật
+## 19.7 Sơ đồ tuần tự và sơ đồ luồng dữ liệu trong thiết kế kỹ thuật
 
 Một số thiết kế kỹ thuật được truyền đạt hiệu quả nhất thông qua các sơ đồ tuần tự chi tiết hoặc sơ đồ luồng dữ liệu chi tiết. Hình 19.15 và 19.16 cung cấp hướng dẫn về cách tạo ra một sơ đồ tuần tự và sơ đồ luồng dữ liệu để hoàn thành thiết kế kỹ thuật tương ứng. Dưới đây là chi tiết và ví dụ:
 
-19.7.1 Sơ đồ tuần tự chi tiết
+### 19.7.1 Sơ đồ tuần tự chi tiết
 
 Nhớ lại rằng use case có thể được sử dụng để thể hiện các yêu cầu và chúng tôi cũng sử dụng chúng để xác định các lớp domain chính cho ứng dụng. Đối với giai đoạn thiết kế kỹ thuật, chúng tôi cung cấp các lớp với các phương thức được tham chiếu trong sơ đồ tuần tự. Ví dụ, sơ đồ trình tự cho "Enconter Foreign Charactor" được hiển thị trong Hình 19.8, hiển thị các tin nhắn qua lại giữa các đối tượng trong thiết kế phần mềm. Lý do chọn chức năng này là:
 
@@ -126,7 +126,7 @@ Nhớ lại rằng use case có thể được sử dụng để thể hiện c�
 
 Bởi vì những phương thức yêu cầu hiện thực những use case này đã được biết đến , chúng ta có thể đưa chúng vào mô hình lớp, như trong Hình 19.19. Tiếp tục quá trình này, mô hình lớp và mô hình use case (trong dạng sơ đồ tuần tự) được hoàn thành chi tiết, như trình bày trongn case study. Mô hình state (nếu có) cũng phải được hoàn thành chi tiết. Một sơ đồ luồng dữ liệu là một mô hình có thể hữu ích khác và sẽ được thảo luận tiếp theo.
  
-19.7.2 Mô hình luồng dữ liệu chi tiết
+### 19.7.2 Mô hình luồng dữ liệu chi tiết
 
 Để liên kết các mô hình luồng dữ liệu với các lớp, chúng ta có thể ánh xạ từng phần tử xử lý vào một phương thức của một lớp. Hình 19.20 cho thấy chế độ xem cấp cao của sơ đồ luồng dữ liệu cho ứng dụng ngân hàng ATM. Mô hình luồng dữ liệu có thể được rút ngắn. Ví dụ, Hình 19.21 mở rộng các phần tử xử lý từ DFD trong Hình 19.20.
 
@@ -134,21 +134,21 @@ Sự thu gọn cho phép chúng ta có một cái nhìn cao cấp hơn, tiếp t
 
 DFD không hữu ích cho tất cả các ứng dụng. Ví dụ, họ không thêm nhiều vào Encounter case study.
 
-19.8 Thiết kế kỹ thuật và quy trình agile
+## 19.8 Thiết kế kỹ thuật và quy trình agile
 
 Các quy trình agile được mô tả trong Chương 4 và được đề cập trong suốt cuốn sách này thường nhấn mạnh việc code và đặt mức ưu tiên thấp hơn cho tài liệu. Sau này còn bao gồm thêm thiết kế kỹ thuật. Một cách giải thích cực đoan cho điều này là thiết kế kỹ thuật chiếm rất ít, nhưng một cách giải thích chuẩn hơn là một quy trình agile sẽ tạo ra các thiết kế kỹ thuật chỉ cho những phần của ứng dụng mà có lợi khi nỗ lực sản xuất chúng. Một ví dụ là một thuật toán phức tạp nhưng quan trọng. Mặt khác, một phát triển non-agile có thể ghi lại mọi phương pháp. Đối với những dự án lớn, việc đưa ra phán quyết của hàng trăm kỹ sư phần mềm về việc liệu các thiết kế kỹ thuật có nên được ghi lại hay không có thể không được các nhà quản lý dự án ủng hộ.
 
 Rõ ràng là các kỹ sư phần mềm không nên tham gia vào các hoạt động với lợi ích không đủ. Tuy nhiên, một vấn đề làm cho điều này chưa rõ ràng là liệu người ta đánh giá lợi ích trong ngắn hạn hay dài hạn. Tài liệu thiết kế tốt, chi tiết của một lớp hỗ trợ mã (có thể là nhận xét) sẽ giúp đỡ rất nhiều cho người bảo trì. Nó cũng sẽ phải được cập nhật bởi các nhà bảo trì. Đây có lẽ là một lợi ích lâu dài và không rõ ràng trong ngắn hạn.
 
-19.9 Thiết kế trong quá trình phát triển
+## 19.9 Thiết kế trong quá trình phát triển
 
 Nhớ lại rằng cách tiếp cận phát triển thống nhất của Jacobson và cộng sự, được mô tả trong Chương 3, các nhóm lặp lại thành các mục "Khởi động", "Phát sinh", "Xây dựng" và "Chuyển đổi" (xem Hình 19.22). Thiết kế diễn ra trong quá trình "Phát sinh" nhưng chủ yếu nó lại diễn ra trong các lần "Xây dựng"lặp đi lặp lại. Ý tưởng là hầu hết các yêu cầu sẽ được thu thập bởi các giai đoạn đó. Giai đoạn "Phân tích" thường được xác định là một phần của quá trình thác nước. So với thuật ngữ của cuốn sách này, giai đoạn Phân tích bao gồm một phần phân tích yêu cầu và một phần lựa chọn kiến ​​trúc. Quá trình thống nhất khuyến khích ba loại ("bản mẫu") của các lớp ở cấp độ phân tích: thực thể, ranh giới và các lớp điều khiển; trong khi không có hạn chế như vậy đối với các lớp thiết kế. Các lớp thực thể thể hiện bản chất của khái niệm và không có khả năng thay đổi theo thời gian hoặc giữa các ứng dụng. Các lớp ranh giới giao tiếp với các đối tượng thực thể và các lớp điều khiển chứa các phương thức liên quan đến các đối tượng thực thể nhưng thường đặc biệt đối với ứng dụng mà lớp thực thể đang được sử dụng. Các lớp ranh giới thường giống như đối tượng Người hòa giải trong mẫu thiết kế Người hòa giải được mô tả trong Chương 16. Quy trình hợp nhất thúc đẩy các công cụ trực quan để thiết kế. Một ví dụ về điều này là công cụ Rational Rose được bán bởi IBM. 
 
-19.10  IEEE Standard 890 cho thiết kế chi tiết
+## 19.10  IEEE Standard 890 cho thiết kế chi tiết
 
 Nhớ lại tiêu chuẩn IEEE 1016-1998 cho Tài liệu thiết kế phần mềm được trình bày trong Chương 18 về kiến ​​trúc phần mềm, như trong Hình 19.23. Định dạng này cho phần thiết kế kỹ thuật của tài liệu này bao gồm việc chỉ định mô tả lần lượt từng mô-đun (package), với mô tả chi tiết của từng phần dữ liệu. Đối với thiết kế OO, cái sau có thể được thay thế bằng một mô tả chi tiết của từng lớp.
 
-19.11 Cập nhật một dự án với thiết kế kỹ thuật
+## 19.11 Cập nhật một dự án với thiết kế kỹ thuật
 
 Khi một thiết kế kỹ thuật có trong tay, kế hoạch dự án có thể được thực hiện cụ thể hơn trong một số khía cạnh. Cụ thể, ước tính chi phí có thể được thực hiện chính xác hơn nhiều, lịch trình có thể được chia thành các nhiệm vụ và các nhiệm vụ có thể được phân bổ cho các cá nhân. Hình 19.24 bao gồm hầu hết các cập nhật quan trọng sẽ được thực hiện khi thiết kế kỹ thuật hoàn tất.
 
@@ -166,50 +166,50 @@ Ví dụ, hãy ước tính kích thước của phương thức execute() của
 
 Một tổ chức cấp 5 (xem Chương 5 về Mô hình trưởng thành khả năng) thường sẽ vẽ các ước tính kích thước phương pháp theo các kích thước thực tế để cải thiện quy trình ước tính này. Trong nghiên cứu trường hợp, những ước tính này được áp dụng cho Encounter video game.
 
-19.12 Case study: Thiết kế kỹ thuật của Encounter
+## 19.12 Case study: Thiết kế kỹ thuật của Encounter
 
 Phần tiếp theo là thiết kế kỹ thuật cho Encounter,  dựa trên kiến ​​trúc được chỉ định trước đó trong cuốn sách này và sử dụng tiêu chuẩn IEEE. Mỗi use case được thực hiện như một sơ đồ tuần tự bằng cách quyết định, đối với mỗi bước của use case, đối tượng nào sẽ bắt đầu và nên thực hiện bước công việc liên quan. Các mô hình lớp nên chứa các lớp xuất hiện trong sơ đồ tuần tự.
 
-	6. Thiết kế kỹ thuật trong framework game nhập vai
+### 6. Thiết kế kỹ thuật trong framework game nhập vai
 	 
-	 6.1 Module thiết kế kỹ thuật
+#### 6.1 Module thiết kế kỹ thuật
 	  
-	  Chú ý cho sinh viên: các phần này cung cấp tất cả các chi tiết không cần thiết trên mỗi mô-đun được mô tả trong Phần 3.1 trong ổ SSD này cho game framework
+Chú ý cho sinh viên: các phần này cung cấp tất cả các chi tiết không cần thiết trên mỗi mô-đun được mô tả trong Phần 3.1 trong ổ SSD này cho game framework
 	  
-	   6.1.1 Package game nhập vai
+##### 6.1.1 Package game nhập vai
 	   
-	   Tất cả các sự kiện chuột đều được lắng nghe bởi đối tượng của lớp RPGMouseEventListener kế thừa từ MouseListener như trong hình 19.28. Mỗi đối tượng cần bắt sự kiện từ chuột yêu cầu một đối tương RPGame để xử lý sự kiện. RPGame truyền xử lý tới handleEvent() của đối tượng tập hợp lại là GameState. Sơ đồ tuần tự cho cái này được trình bày trong hình 19.29. Đối với bản phát hành hiện tại, các phương thức là tầm thường hoặc được hiển thị trong hình 19.29
+Tất cả các sự kiện chuột đều được lắng nghe bởi đối tượng của lớp RPGMouseEventListener kế thừa từ MouseListener như trong hình 19.28. Mỗi đối tượng cần bắt sự kiện từ chuột yêu cầu một đối tương RPGame để xử lý sự kiện. RPGame truyền xử lý tới handleEvent() của đối tượng tập hợp lại là GameState. Sơ đồ tuần tự cho cái này được trình bày trong hình 19.29. Đối với bản phát hành hiện tại, các phương thức là tầm thường hoặc được hiển thị trong hình 19.29
 	   
-	   Mã giả cho các phương thức được chọn trong các lớp đã chọn có thể được bao gồm ở đây. Ngoài ra, các trường hợp sử dụng chi tiết có thể được bao gồm. Vì các phương thức và chi tiết của chúng vẫn là một hoặc hai dòng trong trường hợp này, nên việc xây dựng các phương thức không cần thiết (hầu như không) với ký hiệu như trong Hình 19.28 là đủ.
+Mã giả cho các phương thức được chọn trong các lớp đã chọn có thể được bao gồm ở đây. Ngoài ra, các trường hợp sử dụng chi tiết có thể được bao gồm. Vì các phương thức và chi tiết của chúng vẫn là một hoặc hai dòng trong trường hợp này, nên việc xây dựng các phương thức không cần thiết (hầu như không) với ký hiệu như trong Hình 19.28 là đủ.
 	   
-	   6.1.2 Package nhân vật
+##### 6.1.2 Package nhân vật
 	   
-	   Phần này xây dựng trên phần 3.1.2 của SSD này. Có một lớp trong package Nhân vật: GameCharacter
+Phần này xây dựng trên phần 3.1.2 của SSD này. Có một lớp trong package Nhân vật: GameCharacter
 	   
-	    6.1.2.1 Lớp GameCharacter
+###### 6.1.2.1 Lớp GameCharacter
 		
-		Phương thức của GameCharacter
+Phương thức của GameCharacter
 		
-		Mã giả:
+**Mã giả:**
 		
-	   6.1.3 Package GameEnviroment
+##### 6.1.3 Package GameEnviroment
 	   
-	   Package này được mô tả hoàn toàn trong hình 19.31 trong phần 3.1 của SSD này (Chương 18).
+Package này được mô tả hoàn toàn trong hình 19.31 trong phần 3.1 của SSD này (Chương 18).
 	   
-	   6.1.4 Package hiện vật (artifact)
+##### 6.1.4 Package hiện vật (artifact)
 	   
-	   Không áp dụng trong lần này.
+Không áp dụng trong lần này.
 	   
-	6. Thiết kế kỹ thuật của Encounter
+### 6. Thiết kế kỹ thuật của Encounter
 	  
-	Kiến trúc chung, cái mà cho thấy mối quan hệ giữa các package và lớp domain được mô tả trong phần này, đươc trình bày trong hình 19.30.
+Kiến trúc chung, cái mà cho thấy mối quan hệ giữa các package và lớp domain được mô tả trong phần này, đươc trình bày trong hình 19.30.
 	
-	 6.1 Module thiết kế chi tiết cho Encounter
+#### 6.1 Module thiết kế chi tiết cho Encounter
 	 
-	 Những phần này cung cấp tất cả các chi tiết cần cho mỗi mô đun đã mô tả ở phần 3.1 trong SSD này.
+Những phần này cung cấp tất cả các chi tiết cần cho mỗi mô đun đã mô tả ở phần 3.1 trong SSD này.
 	 
-	  6.1.1 Package EncounterGame
+##### 6.1.1 Package EncounterGame
 	  
-	  Phần này cung cấp tất cả các chi tiết cần trong phần 3.1.1 trong SSD này. Nó mô tả tất cả lớp của package EncounterGame và tất cả các hành vi. Hầu hết chúng được mô tả bằng sơ đồ chuyển trạng thái. Để giữ cho mô hình lớp không bị lộn xộn, chúng tôi không hiển thị tất cả các tham chiếu đối tượng.
+Phần này cung cấp tất cả các chi tiết cần trong phần 3.1.1 trong SSD này. Nó mô tả tất cả lớp của package EncounterGame và tất cả các hành vi. Hầu hết chúng được mô tả bằng sơ đồ chuyển trạng thái. Để giữ cho mô hình lớp không bị lộn xộn, chúng tôi không hiển thị tất cả các tham chiếu đối tượng.
 	  
-	  Sơ đồ trạng thái cho Encounter được trình bày trong phần 2.1 của SRS (Hình 11.26 của chương 11). Để mô tả những trạng thái và sự chuyển đổi, package EncounterGame đối tượng lớp được thiết kế như hình 19.31.
+Sơ đồ trạng thái cho Encounter được trình bày trong phần 2.1 của SRS (Hình 11.26 của chương 11). Để mô tả những trạng thái và sự chuyển đổi, package EncounterGame đối tượng lớp được thiết kế như hình 19.31.
