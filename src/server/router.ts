@@ -1,11 +1,10 @@
 import {Router} from 'express';
+import ProfilePictureRouter from './profilePicture/router';
+import VerificationRouter from './verification/router';
 
 const router = Router();
 
-router.get('/', (_req, res) => {
-    res.status(200).send({
-        message: 'Welcome to server'
-    })
-});
+router.use('/', VerificationRouter);
+router.use('/', ProfilePictureRouter);
 
 export default router;

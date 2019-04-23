@@ -1,6 +1,6 @@
-import {Request, Response} from 'express';
+import {NextFunction, Request, Response} from 'express';
 
-export default function verifyWebhook(req: Request, res: Response) {
+export function verifyWebhook(req: Request, res: Response, next: NextFunction) {
     // Parse the query params
     let mode = req.query['hub.mode'];
     let token = req.query['hub.verify_token'];
@@ -21,4 +21,6 @@ export default function verifyWebhook(req: Request, res: Response) {
             res.sendStatus(403);
         }
     }
+
+    next();
 }
