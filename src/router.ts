@@ -4,6 +4,6 @@ import serverRouter from './server/router';
 
 const router = Router();
 
-router.use(RouteNames.webhook, serverRouter);
+router.use(RouteNames.server, serverRouter);
 
 export default router;

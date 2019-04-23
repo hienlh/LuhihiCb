@@ -20,7 +20,5 @@ export function verifyWebhook(req: Request, res: Response, next: NextFunction) {
             // Responds with '403 Forbidden' if verify tokens do not match
             res.sendStatus(403);
         }
-    }
-
-    next();
+    } else next();
 }
