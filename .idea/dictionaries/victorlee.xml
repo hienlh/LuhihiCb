@@ -2,6 +2,7 @@
   <dictionary name="victorlee">
     <words>
       <w>dotenv</w>
+      <w>postback</w>
       <w>webhook</w>
     </words>
   </dictionary>
