@@ -1,7 +1,7 @@
-import express from 'express';
-import logger from 'morgan';
-import bodyParser from 'body-parser';
-import dotenv from 'dotenv';
+import * as express from 'express';
+import * as logger from 'morgan';
+import * as bodyParser from 'body-parser';
+import * as dotenv from 'dotenv';
 
 export default function config() {
     dotenv.config();
