@@ -132,6 +132,7 @@ const userController: IUserController = {
         const user = await User.findOne(userId);
         if (!user) throw new Error('User not found.');
         const userPicture = await UserPictureController.getCurrentUserPicture(userId);
+        if(!userPicture) throw new Error('NO_PICTURE');
         await UserPictureController.disablePicture(userId, userPicture.attachmentId);
     }
 };

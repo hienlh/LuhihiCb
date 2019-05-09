@@ -1,7 +1,7 @@
 import {saveUser} from './saveUser';
 
-const handleSender = (senderId: string) => {
-    saveUser(senderId);
+const handleSender = async (senderId: string) => {
+    await saveUser(senderId);
 };
 
 export default handleSender;
