@@ -12,6 +12,7 @@ export interface IUserPictureController {
      */
     selectPicture: (userId: string, attachmentId: string) => Promise<UserPicture>;
     getAllSelectedPicture: (length?: number, offset?: number) => Promise<UserPicture[]>;
+    disablePicture: (userId: string, attachmentId: string) => Promise<void>;
 }
 
 const userPictureController: IUserPictureController = {
@@ -53,6 +54,13 @@ const userPictureController: IUserPictureController = {
     },
     getAllSelectedPicture: async (length, offset) => {
         return await UserPicture.find({where: {selected: true}, take: length, skip: offset});
+    },
+    disablePicture: async (userId, attachmentId) => {
+        const userPicture = await UserPicture.findOne({userId, attachmentId});
+        if(userPicture) {
+            userPicture.selected = false;
+            await userPicture.save();
+        }
     }
 };
 

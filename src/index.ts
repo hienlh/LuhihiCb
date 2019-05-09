@@ -10,15 +10,20 @@ const app = config();
 // FbMessAPI.setGreeting([{locale: 'default', text: 'Chào mừng bạn đến với Luhihi Chatbot!'}]);
 // FbMessAPI.setGetStarted(Postbacks.GetStarted).then(() => console.log('Set Get Started success.'));
 // FbMessAPI.setPersistentMenu([
-//     new Nested('Xem hình', [
-//         new Postback('Ngẫu nhiên', Postbacks.ViewPicture),
-//         new Postback('Xem hình của tôi', Postbacks.ViewMyPicture),
+//     new Nested('Chức năng chính', [
+//         new Postback('Xem hình', Postbacks.ViewPicture),
+//         new Postback('Thả thính ♥♡♥', Postbacks.NeedLove)
 //     ]),
-//     new Postback('Ai thích hình của tôi?', Postbacks.ViewRequests + 0),
 //     new Nested('Nhắn tin', [
 //         new Postback('Dừng nhắn tin', Postbacks.CancelChat),
 //         new Postback('Xin facebook', Postbacks.RequestFacebook)
 //     ]),
+//     new Nested('Khác', [
+//         new Postback('Ai thích hình của tôi?', Postbacks.ViewRequests + 0),
+//         new Postback('Xem hình của tôi', Postbacks.ViewMyPicture),
+//         new Postback('Xoá hình của tôi', Postbacks.RemovePicture),
+//         new Postback('Cập nhật profile', Postbacks.UpdateProfile)
+//     ])
 // ]).then(() => console.log('Set persistent menu success'));
 
 app.use(mainRouter);

@@ -1,10 +1,14 @@
 import {FbMessAPI} from '../../framework/fbMessAPI';
+import {addChat} from '../handleChatting/addChat';
 import {cancelChat} from '../handleChatting/cancelChat';
+import {matchUser, needLove} from '../handleNeedLove/needLove';
 import {acceptRequest, getAllRequest} from '../handleRequest/handleRequest';
 import {RandomPicture, ViewUserPicture} from '../handleResponse/responsePicture';
 import {SendLove} from '../handleRequest/sendLove';
 import {Postbacks} from '../../helper/postbacks';
+import {updateUser} from '../handleSender/saveUser';
 import {getStarted} from './getStarted';
+import {removePicture} from './removePicture';
 
 export const handlePostback = (senderId: string, payload: any) => {
     // Set the response based on the postback payload
@@ -27,5 +31,26 @@ export const handlePostback = (senderId: string, payload: any) => {
         cancelChat(senderId).then()
     } else if (payload === Postbacks.RequestFacebook) {
         FbMessAPI.sendText(senderId, 'Tính năng đang phát triển!')
+    } else if (payload === Postbacks.RemovePicture){
+        removePicture(senderId).then(() => {
+            FbMessAPI.sendText(senderId, 'Đã xoá hình của bạn. Người khác sẽ không thể ' +
+                'tìm thấy bạn cho đến khi bạn có hình mới.');
+        })
+    } else if (payload === Postbacks.NeedLove) {
+        needLove(senderId).then(() => {
+            matchUser(senderId).then((user) => {
+                if(!user)
+                    FbMessAPI.sendText(senderId, 'Chúng tôi đang mang thính của bạn đi ' +
+                        'rải khắp nhân gian. Hãy đợi tin tốt nhé!');
+                else {
+                    addChat(senderId, user.userId).then(()=>{
+                        FbMessAPI.sendText(senderId, 'Đã có người đớp thính của bạn. Chào người đó đi nào!');
+                        FbMessAPI.sendText(user.userId, 'Đã có người đớp thính của bạn. Chào người đó đi nào!');
+                    });
+                }
+            })
+        });
+    } else if (payload === Postbacks.UpdateProfile) {
+        updateUser(senderId);
     }
 };

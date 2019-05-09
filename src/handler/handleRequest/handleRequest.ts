@@ -2,6 +2,7 @@ import {RequestUserController} from '../../controller/requestUserController';
 import {UserController} from '../../controller/userController';
 import {FbMessAPI} from '../../framework/fbMessAPI';
 import {Postbacks} from '../../helper/postbacks';
+import {addChat} from '../handleChatting/addChat';
 
 export const acceptRequest = async (userId: string, requestId: string) => {
     // Kiểm tra xem có đang chat với ai khác không.
@@ -18,12 +19,11 @@ export const acceptRequest = async (userId: string, requestId: string) => {
     // Delete request
     await RequestUserController.deleteRequestUser(userId, requestId);
     //Add status chatting with for both of 2 users
-    await UserController.addChatWith(userId, requestId);
-    await UserController.addChatWith(requestId, userId);
+    await addChat(userId, requestId);
     const requestUser = await UserController.getUser(requestId);
     const user = await UserController.getUser(userId);
     FbMessAPI.sendText(userId, `*${requestUser.name}* đã chấp nhận trò chuyện với bạn.`);
-    FbMessAPI.sendText(requestId, `Bạn đã kết nối với *${user.name}*. Say hello đi nào!`)
+    FbMessAPI.sendText(requestId, `Bạn đã kết nối với *${user.name}*. Say hello đi nào!`);
 };
 
 export const getAllRequest = async (userId: string, page: number = 0) => {

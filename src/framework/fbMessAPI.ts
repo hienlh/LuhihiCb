@@ -1,6 +1,6 @@
 import * as rp from 'request-promise';
 import {RequestPromise} from 'request-promise';
-import {FbAction, FbQuickReply, FbQuickReplyAttachment, FbQuickReplyButton, FbUserProfile, Greeting} from './model';
+import {FbAction, FbQuickReplyAttachment, FbQuickReplyButton, FbUserProfile, Greeting} from './model';
 import {SendFbRequest} from './sendFbRequest';
 
 export interface IFacebookMessengerAPI {
@@ -22,7 +22,7 @@ export interface IFacebookMessengerAPI {
      * Create persona, return persona id.
      */
     createPersona: (name: string, profile_picture_url: string) => Promise<string>,
-    // sendListTemplate: ()
+    deletePersona: (personaId: string) => Promise<void>;
 }
 
 const fbMessAPI: IFacebookMessengerAPI = {
@@ -146,6 +146,9 @@ const fbMessAPI: IFacebookMessengerAPI = {
         const requestBody = {name, profile_picture_url};
         const result = await SendFbRequest.postWithPageAccessToken('https://graph.facebook.com/me/personas', requestBody);
         return result.id;
+    },
+    deletePersona: async personaId => {
+        await SendFbRequest.deleteWithPageAccessToken('https://graph.facebook.com/' + personaId);
     }
 };
 
