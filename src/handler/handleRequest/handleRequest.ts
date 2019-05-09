@@ -21,9 +21,9 @@ export const acceptRequest = async (userId: string, requestId: string) => {
     await UserController.addChatWith(userId, requestId);
     await UserController.addChatWith(requestId, userId);
     const requestUser = await UserController.getUser(requestId);
-    const user = await UserController.getUser(requestId);
+    const user = await UserController.getUser(userId);
     FbMessAPI.sendText(userId, `*${requestUser.name}* đã chấp nhận trò chuyện với bạn.`);
-    FbMessAPI.sendText(requestId, `Bạn đã kết nối với ${user.name}. Say hello đi nào!`)
+    FbMessAPI.sendText(requestId, `Bạn đã kết nối với *${user.name}*. Say hello đi nào!`)
 };
 
 export const getAllRequest = async (userId: string, page: number = 0) => {
@@ -65,7 +65,7 @@ export const getAllRequest = async (userId: string, page: number = 0) => {
                     'image_url': request.user.avatar,
                     'buttons': [
                         {
-                            'title': 'Nhắn tin với người này!',
+                            'title': 'Nhắn tin ngay!',
                             'type': 'postback',
                             'payload': Postbacks.Accept + request.user.userId
                         }

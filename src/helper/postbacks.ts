@@ -5,5 +5,6 @@ export enum Postbacks {
     Love = 'LOVE_',
     Accept = 'ACCEPT_',
     ViewRequests = 'VIEW-REQUESTS-PAGE_',
-    CancelChat = 'CANCEL_CHAT'
+    CancelChat = 'CANCEL_CHAT',
+    RequestFacebook = 'REQUEST_FACEBOOK'
 }

@@ -1,3 +1,4 @@
+import {FbMessAPI} from '../../framework/fbMessAPI';
 import {cancelChat} from '../handleChatting/cancelChat';
 import {acceptRequest, getAllRequest} from '../handleRequest/handleRequest';
 import {RandomPicture, ViewUserPicture} from '../handleResponse/responsePicture';
@@ -24,5 +25,7 @@ export const handlePostback = (senderId: string, payload: any) => {
         getAllRequest(senderId, page).then(() => console.log('Sent list request.'));
     } else if (payload === Postbacks.CancelChat) {
         cancelChat(senderId).then()
+    } else if (payload === Postbacks.RequestFacebook) {
+        FbMessAPI.sendText(senderId, 'Tính năng đang phát triển!')
     }
 };

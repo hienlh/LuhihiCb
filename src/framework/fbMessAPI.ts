@@ -5,6 +5,7 @@ import {SendFbRequest} from './sendFbRequest';
 
 export interface IFacebookMessengerAPI {
     send: (senderId: string, message: any) => RequestPromise,
+    sendAsPersona: (senderId: string, personaId: string, message: any) => RequestPromise,
     sendText: (senderId: string, text: string) => RequestPromise,
     sendTextAsPersona: (senderId: string, personaId: string, text: string) => RequestPromise,
     sendQuickReplyWithText: (senderId: string, text: string, buttons: FbQuickReplyButton[]) => RequestPromise,
@@ -31,6 +32,16 @@ const fbMessAPI: IFacebookMessengerAPI = {
                 'id': senderId
             },
             message
+        };
+        return SendFbRequest.postWithPageAccessToken('https://graph.facebook.com/v2.6/me/messages', request_body);
+    },
+    sendAsPersona: (senderId, personaId, message) => {
+        const request_body = {
+            'recipient': {
+                'id': senderId
+            },
+            message,
+            persona_id: personaId
         };
         return SendFbRequest.postWithPageAccessToken('https://graph.facebook.com/v2.6/me/messages', request_body);
     },
