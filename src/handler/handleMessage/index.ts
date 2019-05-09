@@ -1,5 +1,4 @@
 import {UserController} from '../../controller/userController';
-import {UserPictureController} from '../../controller/userPictureController';
 import {FbMessAPI} from '../../framework/fbMessAPI';
 import {handleAttachment} from './handlerAttachment';
 import {handleText} from './handlerText';
@@ -16,9 +15,9 @@ export const handleMessage = async (senderId: string, receivedMessage: any) => {
     // CHat binh thuong
     else {
         if (receivedMessage.text) {
-            FbMessAPI.sendTextAsPersona(senderId, '355633685296064', handleText(receivedMessage.text))
+            FbMessAPI.sendText(senderId, handleText(receivedMessage.text))
                 .then(() => console.log('Sent!'))
-                .catch(() => console.log('Send error!'));
+                .catch((e) => console.log(e));
         } else if (receivedMessage.attachments) {
             handleAttachment(senderId, receivedMessage.attachments);
         }
@@ -31,11 +30,11 @@ const sendMessage = async (senderId: string, receivedMessage: any, isPersona: bo
         if (isPersona) {
             FbMessAPI.sendTextAsPersona(user.chattingWith.userId, user.personaId, receivedMessage.text)
                 .then(() => console.log('Sent!'))
-                .catch(() => console.log('Send error!'));
+                .catch((e) => console.log(e));
         } else {
             FbMessAPI.sendText(user.chattingWith.userId, receivedMessage.text)
                 .then(() => console.log('Sent!'))
-                .catch(() => console.log('Send error!'));
+                .catch((e) => console.log(e));
         }
     } else if (receivedMessage.attachments) {
         let type = receivedMessage.attachments[0].type;

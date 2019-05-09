@@ -35,6 +35,8 @@ export const handlePostback = (senderId: string, payload: any) => {
         removePicture(senderId).then(() => {
             FbMessAPI.sendText(senderId, 'Đã xoá hình của bạn. Người khác sẽ không thể ' +
                 'tìm thấy bạn cho đến khi bạn có hình mới.');
+        }).catch(e=>{
+            if(e.message === 'NO_PICTURE') FbMessAPI.sendText(senderId, 'Bạn đã gửi hình đâu mà xoá :D')
         })
     } else if (payload === Postbacks.NeedLove) {
         needLove(senderId).then(() => {

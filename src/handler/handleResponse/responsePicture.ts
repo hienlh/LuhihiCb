@@ -8,21 +8,20 @@ import {Postbacks} from '../../helper/postbacks';
 const randomPicture = async (senderId: string) => {
     // Lấy ra danh sách hình
     let pictures = await UserPictureController.getAllSelectedPicture();
-    if (pictures.length === 1 && pictures[0].userId === senderId) {
+
+    // Bỏ qua ảnh của những người đã gửi request
+    // Bỏ qua hình của chính mình
+    const requestedUsers = await RequestUserController.getAllRequestOfUser(senderId);
+    for (const requestedUser of requestedUsers) {
+        pictures = pictures.filter(picture =>
+            picture.userId !== requestedUser.userRequestId && picture.userId != senderId);
+    }
+
+    if (pictures.length === 0) {
         return FbMessAPI.sendText(senderId, 'Không tìm thấy hình mới!');
     }
 
-    // Bỏ qua ảnh của những người đã gửi request
-    const requestedUsers = await RequestUserController.getAllRequestOfUser(senderId);
-    for (const requestedUser of requestedUsers) {
-        pictures = pictures.filter(pictures => pictures.userId !== requestedUser.userRequestId);
-    }
-
-    // Bỏ qua hình của chính mình
-    let result: UserPicture;
-    do {
-        result = pictures[Math.floor(Math.random() * pictures.length)]
-    } while (result.userId === senderId);
+    let result = pictures[Math.floor(Math.random() * pictures.length)];
 
     // Soạn tin nhắn để trả lời lại user
     const attachment: FbQuickReplyAttachment = {
