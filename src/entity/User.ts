@@ -1,17 +1,20 @@
-import {Column, Entity, OneToMany, PrimaryColumn} from "typeorm";
+import {BaseEntity, Column, Entity, OneToMany, PrimaryColumn} from "typeorm";
 import {UserPicture} from './UserPicture';
 
 @Entity()
-export class User {
+export class User extends BaseEntity {
 
     @PrimaryColumn({unique: true})
-    public userId: number;
+    public userId: string;
+
+    @Column({unique: true})
+    public personaId: string;
 
     @Column()
     public name: string;
 
     @Column()
-    public gender: number;
+    public gender: string;
 
     @Column({default: 'vi_VN'})
     public locale: string;

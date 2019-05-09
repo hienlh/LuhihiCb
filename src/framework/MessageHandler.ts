@@ -31,9 +31,9 @@ class MessageHandler {
         })
     };
 
-    public callHandlePostback = (senderId: string, message: any) => {
+    public callHandlePostback = (senderId: string, payload: any) => {
         this._handlePostback.forEach((handle)=> {
-            handle(senderId, message);
+            handle(senderId, payload);
         })
     };
 }

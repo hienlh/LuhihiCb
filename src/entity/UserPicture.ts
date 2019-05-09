@@ -1,18 +1,18 @@
-import {Column, Entity, JoinColumn, ManyToOne, PrimaryColumn} from "typeorm";
+import {BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryColumn} from "typeorm";
 import {User} from './User';
 
 @Entity()
-export class UserPicture {
+export class UserPicture extends BaseEntity{
 
     @ManyToOne(type => User, user => user.userPictures, {onDelete: 'CASCADE'})
     @JoinColumn({name: 'userId'})
     public user: User;
 
     @PrimaryColumn()
-    public userId: number;
+    public userId: string;
 
     @PrimaryColumn()
-    public attachmentId: number;
+    public attachmentId: string;
 
     @Column({default: false})
     public selected: boolean;
