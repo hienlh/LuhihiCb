@@ -3,10 +3,13 @@ import {acceptRequest, getAllRequest} from '../handleRequest/handleRequest';
 import {RandomPicture, ViewUserPicture} from '../handleResponse/responsePicture';
 import {SendLove} from '../handleRequest/sendLove';
 import {Postbacks} from '../../helper/postbacks';
+import {getStarted} from './getStarted';
 
 export const handlePostback = (senderId: string, payload: any) => {
     // Set the response based on the postback payload
-    if (payload === Postbacks.ViewPicture) {
+    if (payload === Postbacks.GetStarted) {
+        getStarted(senderId).then(() => console.log('Sent welcome.'));
+    } else if (payload === Postbacks.ViewPicture) {
         RandomPicture(senderId).then(() => console.log('Sent random picture.'));
     } else if (payload === Postbacks.ViewMyPicture) {
         ViewUserPicture(senderId).then(() => console.log('Sent user picture.'));
@@ -16,7 +19,7 @@ export const handlePostback = (senderId: string, payload: any) => {
     } else if (payload.includes(Postbacks.Accept)) {
         const acceptId = payload.split('_')[1];
         acceptRequest(acceptId, senderId).then(() => console.log('Accepted request.'));
-    } else if (payload.includes(Postbacks.ViewRequests)){
+    } else if (payload.includes(Postbacks.ViewRequests)) {
         const page = payload.split('_')[1];
         getAllRequest(senderId, page).then(() => console.log('Sent list request.'));
     } else if (payload === Postbacks.CancelChat) {

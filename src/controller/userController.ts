@@ -45,7 +45,7 @@ const userController: IUserController = {
         await user.remove();
     },
     getUser: async (userId: string) => {
-        const user = await User.findOne(userId);
+        const user = await User.findOne(userId, {relations: ['chattingWith']});
         if (!user) throw new Error('User not found.');
         return user;
     },
@@ -75,7 +75,7 @@ const userController: IUserController = {
         const user = await User.findOne(userId);
         if (!user) throw new Error('User not found.');
         if (user.chattingWith || chatWithUser.chattingWith)
-            throw new Error('User is chatting with another user. Can\'t add new one.');
+            throw new Error('User is chatting with anotherp user. Can\'t add new one.');
         user.chattingWith = chatWithUser;
         chatWithUser.chattingWith = user;
         return await user.save();
