@@ -1,4 +1,4 @@
-import {BaseEntity, Column, Entity, OneToMany, PrimaryColumn} from "typeorm";
+import {BaseEntity, Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn} from "typeorm";
 import {UserPicture} from './UserPicture';
 
 @Entity()
@@ -27,5 +27,9 @@ export class User extends BaseEntity {
 
     @OneToMany(type => UserPicture, userPicture => userPicture.userId)
     public userPictures: UserPicture[];
+
+    @OneToOne(type => User, user => user.chattingWith, {nullable: true})
+    @JoinColumn({name: 'chattingWithId'})
+    public chattingWith: User;
 
 }
