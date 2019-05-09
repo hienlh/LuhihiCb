@@ -1,4 +1,4 @@
-import {FbMessAPI} from '../framework/FbMessAPI';
+import {FbMessAPI} from '../../framework/fbMessAPI';
 import {handleAttachment} from './handlerAttachment';
 import {handleText} from './handlerText';
 

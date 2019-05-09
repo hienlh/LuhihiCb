@@ -1,8 +1,8 @@
 import {NextFunction, Request, Response, Router} from 'express';
 import messageHandler, {MessageType} from '../framework/MessageHandler';
-import {handleMessage} from '../handleMessage';
-import {handlePostback} from '../handlePostback';
-import HandleSender from '../handleSender';
+import {handleMessage} from '../handler/handleMessage';
+import {handlePostback} from '../handler/handlePostback';
+import HandleSender from '../handler/handleSender';
 import VerificationRouter from '../verification/router';
 
 const router = Router();

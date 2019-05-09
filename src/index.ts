@@ -11,7 +11,8 @@ const app = config();
 // FbMessAPI.setGetStarted(Postbacks.GetStarted).then(() => console.log('Set Get Started success.'));
 // FbMessAPI.setPersistentMenu([
 //     new Postback('Xem hình', Postbacks.ViewPicture),
-//     new Postback('Xem hình của tôi', Postbacks.ViewMyPicture)
+//     new Postback('Xem hình của tôi', Postbacks.ViewMyPicture),
+//     new Postback('Ai thích hình của tôi?', Postbacks.ViewRequests + 0)
 // ]).then(() => console.log('Set persistent menu success'));
 
 app.use(mainRouter);

@@ -12,6 +12,12 @@ export interface IUserController {
     getAllUser: (length?: number, offset?: number) => Promise<User[]>;
     getUsersBy: (name?: string, gender?: string, locale?: string, length?: number, offset?: number) => Promise<User[]>;
     isCreated: (userId: string) => Promise<boolean>;
+    isChattingWith: (userId: string) => Promise<boolean>;
+    addChatWith: (userId: string, chatWithId: string) => Promise<User>;
+    /**
+     * Return previous chatting user id.
+     */
+    removeChatWith: (userId: string) => Promise<string>;
 }
 
 const userController: IUserController = {
@@ -57,6 +63,30 @@ const userController: IUserController = {
     },
     isCreated: async userId => {
         return !!await User.findOne(userId);
+    },
+    isChattingWith: async userId => {
+        const user = await User.findOne(userId, {relations: ['chattingWith']});
+        if(!user) throw new Error('User not found.');
+        return !!user.chattingWith;
+    },
+    addChatWith: async (userId, chatWithId) => {
+        const chatWithUser = await User.findOne(chatWithId);
+        if (!chatWithUser) throw new Error('User to chat with not found.');
+        const user = await User.findOne(userId);
+        if (!user) throw new Error('User not found.');
+        if (user.chattingWith || chatWithUser.chattingWith)
+            throw new Error('User is chatting with another user. Can\'t add new one.');
+        user.chattingWith = chatWithUser;
+        chatWithUser.chattingWith = user;
+        return await user.save();
+    },
+    removeChatWith: async (userId) => {
+        const user = await User.findOne(userId, {relations: ['chattingWith']});
+        if (!user) throw new Error('User not found.');
+        const result = user.chattingWith.userId;
+        user.chattingWith = null;
+        await user.save();
+        return result;
     }
 };
 

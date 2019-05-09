@@ -21,7 +21,7 @@ export interface IFacebookMessengerAPI {
      * Create persona, return persona id.
      */
     createPersona: (name: string, profile_picture_url: string) => Promise<string>,
-    // sendURLButton: (title: string, url: string, webview_height_ratio: string)
+    // sendListTemplate: ()
 }
 
 const fbMessAPI: IFacebookMessengerAPI = {

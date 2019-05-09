@@ -1,20 +1,30 @@
-import {UserPictureController} from '../controller/userPictureController';
-import {UserPicture} from '../entity/UserPicture';
-import {FbMessAPI} from '../framework/fbMessAPI';
-import {FbQuickReply, FbQuickReplyAttachment, FbQuickReplyButton} from '../framework/model';
-import {Postbacks} from '../helper/postbacks';
+import {RequestUserController} from '../../controller/requestUserController';
+import {UserPictureController} from '../../controller/userPictureController';
+import {UserPicture} from '../../entity/UserPicture';
+import {FbMessAPI} from '../../framework/fbMessAPI';
+import {FbQuickReplyAttachment, FbQuickReplyButton} from '../../framework/model';
+import {Postbacks} from '../../helper/postbacks';
 
 const randomPicture = async (senderId: string) => {
-    const pictures = await UserPictureController.getAllSelectedPicture();
+    // Lấy ra danh sách hình
+    let pictures = await UserPictureController.getAllSelectedPicture();
     if (pictures.length === 1 && pictures[0].userId === senderId) {
         return FbMessAPI.sendText(senderId, 'Không tìm thấy hình mới!');
     }
 
+    // Bỏ qua ảnh của những người đã gửi request
+    const requestedUsers = await RequestUserController.getAllRequestOfUser(senderId);
+    for (const requestedUser of requestedUsers) {
+        pictures = pictures.filter(pictures => pictures.userId !== requestedUser.userRequestId);
+    }
+
+    // Bỏ qua hình của chính mình
     let result: UserPicture;
     do {
         result = pictures[Math.floor(Math.random() * pictures.length)]
     } while (result.userId === senderId);
 
+    // Soạn tin nhắn để trả lời lại user
     const attachment: FbQuickReplyAttachment = {
         'type': 'template',
         'payload': {
@@ -29,16 +39,16 @@ const randomPicture = async (senderId: string) => {
     };
     const buttons: FbQuickReplyButton[] = [
         {
-            'content_type':'text',
-            'title':'Yêu thích',
-            'payload':'LOVE_' + result.userId,
-            'image_url':'https://images.vexels.com/media/users/3/144097/isolated/preview/3dedcd235214cdde6b4e171fdbf66c9d-heart-icon-by-vexels.png'
+            'content_type': 'text',
+            'title': 'Yêu thích',
+            'payload': 'LOVE_' + result.userId,
+            'image_url': 'https://images.vexels.com/media/users/3/144097/isolated/preview/3dedcd235214cdde6b4e171fdbf66c9d-heart-icon-by-vexels.png'
         },
         {
-            'content_type':'text',
-            'title':'Người tiếp theo',
+            'content_type': 'text',
+            'title': 'Người tiếp theo',
             'payload': Postbacks.ViewPicture,
-            'image_url':'https://cdn0.iconfinder.com/data/icons/music-sets/500/207-512.png'
+            'image_url': 'https://cdn0.iconfinder.com/data/icons/music-sets/500/207-512.png'
         }
     ];
     return FbMessAPI.sendQuickReplyWithAttachment(senderId, attachment, buttons);
@@ -65,7 +75,7 @@ const viewUserPicture = async (senderId: string) => {
     } else FbMessAPI.sendText(senderId, 'Mày chưa up hình lấy đâu mà xem.')
 };
 
-export  {
+export {
     randomPicture as RandomPicture,
     viewUserPicture as ViewUserPicture
 }
