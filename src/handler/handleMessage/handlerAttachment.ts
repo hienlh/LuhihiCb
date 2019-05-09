@@ -1,5 +1,5 @@
-import {UserPictureController} from '../controller/userPictureController';
-import {FbMessAPI} from '../framework/fbMessAPI';
+import {UserPictureController} from '../../controller/userPictureController';
+import {FbMessAPI} from '../../framework/fbMessAPI';
 
 export const handleAttachment = (senderId: string, attachments: any) => {
     let type = attachments[0].type;

@@ -1,8 +1,8 @@
 import {NextFunction, Request, Response, Router} from 'express';
 import messageHandler, {MessageType} from '../framework/MessageHandler';
-import {handleMessage} from '../handleMessage';
-import {handlePostback} from '../handlePostback';
-import HandleSender from '../handleSender';
+import {handleMessage} from '../handler/handleMessage';
+import {handlePostback} from '../handler/handlePostback';
+import HandleSender from '../handler/handleSender';
 import VerificationRouter from '../verification/router';
 
 const router = Router();
@@ -18,6 +18,7 @@ export function createEndpoint(req: Request, res: Response, next: NextFunction) 
     let body = req.body;
     if (body.object === 'page') {
         body.entry.forEach(function (entry) {
+            if(!entry.messaging) return next();
             let webhookEvent = entry.messaging[0];
             const senderId = webhookEvent.sender.id;
             if (webhookEvent.message) {

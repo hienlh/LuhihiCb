@@ -18,7 +18,4 @@ export class RequestUser extends BaseEntity {
     @PrimaryColumn()
     public userRequestId: string;
 
-    @Column({default: false})
-    public accept: boolean;
-
 }

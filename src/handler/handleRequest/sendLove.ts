@@ -1,12 +1,13 @@
-import {RequestUserController} from '../controller/requestUserController';
-import {UserController} from '../controller/userController';
-import {FbMessAPI} from '../framework/fbMessAPI';
-import {FbQuickReplyButton} from '../framework/model';
-import {Postbacks} from '../helper/postbacks';
+import {RequestUserController} from '../../controller/requestUserController';
+import {UserController} from '../../controller/userController';
+import {FbMessAPI} from '../../framework/fbMessAPI';
+import {FbQuickReplyButton} from '../../framework/model';
+import {Postbacks} from '../../helper/postbacks';
 
 const sendLove = async (fromId: string, toId: string) => {
     await RequestUserController.addRequestUser(fromId, toId);
     await sendRequestMessage(fromId, toId);
+    FbMessAPI.sendText(fromId, 'Đã gửi yêu cầu.');
 };
 
 const sendRequestMessage = async (fromId: string, toId: string) => {
@@ -26,7 +27,6 @@ const sendRequestMessage = async (fromId: string, toId: string) => {
         }
     ];
     FbMessAPI.sendQuickReplyWithText(toId,`*${user.name}* đã thích hình của bạn. Muốn nhắn tin luôn hông?`, buttons);
-    FbMessAPI.sendText(fromId, 'Đã gửi yêu cầu.');
 };
 
 export {sendLove as SendLove}

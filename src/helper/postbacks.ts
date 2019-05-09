@@ -3,5 +3,8 @@ export enum Postbacks {
     ViewMyPicture = 'VIEW_MY_PICTURE',
     GetStarted = 'GET_STARTED',
     Love = 'LOVE_',
-    Accept = 'ACCEPT_'
+    Accept = 'ACCEPT_',
+    ViewRequests = 'VIEW-REQUESTS-PAGE_',
+    CancelChat = 'CANCEL_CHAT',
+    RequestFacebook = 'REQUEST_FACEBOOK'
 }

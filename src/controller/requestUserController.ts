@@ -3,9 +3,8 @@ import {RequestUser} from '../entity/RequestUser';
 export interface IRequestUserController {
     addRequestUser: (userId: string, userRequestId: string) => Promise<RequestUser>;
     deleteRequestUser: (userId: string, userRequestId: string) => Promise<void>;
-    acceptRequestUser: (userId: string, userRequestId: string) => Promise<RequestUser>;
     getAllRequestOfUser: (userId: string, length?: number, offset?: number) => Promise<RequestUser[]>;
-    getAllRequestOfUserWithAccept: (userId: string, accept: boolean, length?: number, offset?: number) => Promise<RequestUser[]>;
+    getRequest: (userId: string, userRequestId: string) => Promise<RequestUser>;
     getAll: (length?: number, offset?: number) => Promise<RequestUser[]>;
 }
 
@@ -22,20 +21,14 @@ const requestUserController: IRequestUserController = {
         if (!request) throw new Error('Request not found.');
         await request.remove();
     },
-    acceptRequestUser: async (userId, userRequestId) => {
-        const request = await RequestUser.findOne({userId, userRequestId});
-        if (!request) throw new Error('Request not found.');
-        request.accept = true;
-        return await request.save();
-    },
     getAll: async (length?, offset?) => {
         return await RequestUser.find({take: length, skip: offset});
     },
     getAllRequestOfUser: async (userId, length?, offset?) => {
-        return await RequestUser.find({where: {userId}, skip: offset, take: length});
+        return await RequestUser.find({where: {userRequestId: userId}, skip: offset, take: length, relations: ['user', 'userRequest']});
     },
-    getAllRequestOfUserWithAccept: async (userId, accept, length?, offset?) => {
-        return await RequestUser.find({where: {userId, accept}, skip: offset, take: length});
+    getRequest: async (userId, userRequestId) => {
+        return await RequestUser.findOne({userId, userRequestId});
     }
 };
 
