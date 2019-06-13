@@ -3,7 +3,6 @@ import {Nested, Postback} from './framework/model';
 import {Postbacks} from './helper/postbacks';
 
 export const InitializeChatbot = () => {
-    return;
     FbMessAPI.setGreeting([{locale: 'default', text: 'Chào mừng bạn đến với Luhihi Chatbot!'}]);
     FbMessAPI.setGetStarted(Postbacks.GetStarted).then(() => console.log('Set Get Started success.'));
     FbMessAPI.setPersistentMenu([
