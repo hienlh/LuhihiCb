@@ -13,7 +13,7 @@ const randomPicture = async (senderId: string) => {
     // Bỏ qua hình của chính mình
     const requestedUsers = await RequestUserController.getAllRequestOfUser(senderId);
     for (const requestedUser of requestedUsers) {
-        pictures = pictures.filter(picture =>
+        pictures = pictures.filter( picture =>
             picture.userId !== requestedUser.userRequestId && picture.userId !== senderId);
     }
 
